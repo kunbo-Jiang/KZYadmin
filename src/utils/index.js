@@ -187,7 +187,7 @@ export function getApiBaseUrl () {
   // const baseUrl = process.env.VUE_APP_PROXY === 'true'
   //   ? `/proxy${ MAPPING }`
   //   : process.env.VUE_APP_BASE_API + MAPPING
-  return 'http://139.159.215.24:8089/'
+  return 'https://kzy-member.com/op/'
 }
 
 /**
