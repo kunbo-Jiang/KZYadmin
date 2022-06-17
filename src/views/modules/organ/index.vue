@@ -59,8 +59,7 @@ const rules = {
   img: [{ required: true, message: '图片不能为空', trigger: 'blur' }],
   name: [{ required: true, message: '名字不能为空', trigger: 'blur' }],
   summary: [{ required: true, message: '简介不能为空', trigger: 'blur' }],
-  status: [{ required: true, message: '状态不能为空', trigger: 'blur' }],
-  url: [{ required: true, message: '跳转链接不能为空', trigger: 'blur' }]
+  status: [{ required: true, message: '状态不能为空', trigger: 'blur' }]
 }
 import { ElMessage, ElMessageBox } from 'element-plus'
 import UploadView from '@/components/upload/index.vue'
