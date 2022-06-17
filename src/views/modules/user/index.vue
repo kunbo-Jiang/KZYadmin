@@ -26,6 +26,7 @@
     </el-table>
     <el-dialog v-model="dialog.visible" :title="dialog.title" width="80%">
       <component
+        v-if="dialog.visible"
         :is="dialog.type"
         :userid="dialog.form.id"
         @onRefresh="onRefresh"
