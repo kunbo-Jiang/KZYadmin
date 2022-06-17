@@ -1,6 +1,6 @@
 import { clearJson } from '@/utils/index'
 import { getToken, setToken, storageUtil } from '@/utils/storage'
-import { loginApi, userInfoApi, editUserInfoApi, logoutApi } from '@/api/login'
+import { loginApi, editUserInfoApi, logoutApi } from '@/api/login'
 import { getUserInfo } from '@/api/user'
 
 export default {

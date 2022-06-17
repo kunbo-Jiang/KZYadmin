@@ -24,7 +24,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog v-model="dialog.visible" :title="dialog.title">
+    <el-dialog v-model="dialog.visible" :title="dialog.title" width="80%">
       <component
         :is="dialog.type"
         :userid="dialog.form.id"
@@ -58,7 +58,7 @@ const btnControls = [
   },
   {
     type: controlEnums.business,
-    label: '交易记录管理'
+    label: '钱包管理'
   },
   {
     type: controlEnums.integral,
@@ -141,7 +141,7 @@ export default {
 
     function onDeleteClick(row) {
       ElMessageBox.confirm(
-        '确定要删除这个轮播图吗',
+        '确定要删除吗？',
         '温馨提示',
         {
           confirmButtonText: '确定',
@@ -160,10 +160,6 @@ export default {
           ElMessage.error(res.msg)
         })
         .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Delete canceled'
-          })
         })
     }
 

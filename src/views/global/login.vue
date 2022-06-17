@@ -42,7 +42,7 @@ import { useStore } from 'vuex'
 
 import { ElNotification } from 'element-plus'
 
-import { getUUID } from '@/utils/index'
+import { getUUID } from '@/utils'
 
 import { captchaApi } from '@/api/login'
 
@@ -51,8 +51,6 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const store = useStore()
-
-    console.log(route.query.targetUrl)
 
     const data = reactive({
       loading: false,

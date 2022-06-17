@@ -101,7 +101,7 @@ export default {
     }
     function onDeleteClick(row) {
       ElMessageBox.confirm(
-        '确定要删除这个轮播图吗',
+        '确定要删除吗？',
         '温馨提示',
         {
           confirmButtonText: '确定',
@@ -120,10 +120,6 @@ export default {
           ElMessage.error(res.msg)
         })
         .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Delete canceled'
-          })
         })
     }
     function onDialogShow(_form = { img: '', name: '', status: 1, summary: '', url: '' }) {

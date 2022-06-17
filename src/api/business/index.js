@@ -33,3 +33,24 @@ export function addBusinessApi(params) {
     }
   })
 }
+
+export function delBusinnessApi(id) {
+  return service({
+    url: '/v1/business',
+    method: 'post',
+    data: {
+      id: id
+    }
+  })
+}
+
+export function updateBusinnessApi(params) {
+  return service({
+    url: '/v1/business',
+    method: 'put',
+    data: params,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}

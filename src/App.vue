@@ -8,11 +8,17 @@
 import { defineComponent } from 'vue'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 
 export default defineComponent({
   setup() {
     const store = useStore()
-    store.dispatch('user/getUser')
+    const router = useRouter()
+    store.dispatch('user/getUser').then(() => router.push({
+      name: 'home'
+    })).catch((e) => {
+      console.log(e)
+    })
     return {
       locale: zhCn
     }

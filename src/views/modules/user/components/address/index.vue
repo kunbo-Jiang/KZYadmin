@@ -4,6 +4,9 @@
     <el-table-column prop="user_id" label="用户id" />
     <el-table-column prop="name" label="用户昵称" />
     <el-table-column prop="phone" label="用户手机号" />
+    <el-table-column prop="province_name" label="省" />
+    <el-table-column prop="city_name" label="市" />
+    <el-table-column prop="area_name" label="区" />
     <el-table-column prop="address" label="用户地址" />
     <el-table-column prop="is_default	" label="是否是默认地址" :formatter="formatterAddress" />
   </el-table>

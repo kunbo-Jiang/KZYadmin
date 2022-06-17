@@ -13,6 +13,7 @@
       <el-table-column prop="end_time" label="结束时间" />
       <el-table-column prop="type" label="类型" />
       <el-table-column prop="discount" label="折扣" />
+      <el-table-column prop="count" label="数量" />
       <el-table-column prop="status" label="状态" :formatter="formatter" />
       <el-table-column label="操作">
         <template #default="scope">
@@ -37,6 +38,12 @@
             :max="1"
             :step="0.01"
             :min="0" />
+        </el-form-item>
+        <el-form-item label="数量" prop="count">
+          <el-input-number
+            v-model="dialog.form.count"
+            :step="1"
+            :min="1" />
         </el-form-item>
         <el-form-item label="结束时间" prop="end_time">
           <el-date-picker
@@ -71,6 +78,7 @@
 const rules = {
   name: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   discount: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
+  count: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   end_time: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   type: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
@@ -123,7 +131,7 @@ export default {
     }
     function onDeleteClick(row) {
       ElMessageBox.confirm(
-        '确定要删除这个轮播图吗',
+        '确定要删除这条数据吗？',
         '温馨提示',
         {
           confirmButtonText: '确定',
@@ -142,10 +150,6 @@ export default {
           ElMessage.error(res.msg)
         })
         .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Delete canceled'
-          })
         })
     }
     function onDialogShow(_form = { discount: 0, end_time: 0, name: '', status: 1, type: 'health', use_rule: '' }) {

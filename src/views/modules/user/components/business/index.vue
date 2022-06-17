@@ -10,6 +10,12 @@
     <el-table-column prop="title" label="标题" />
     <el-table-column prop="type" label="类型" :formatter="formatType" />
     <el-table-column prop="amount" label="金额" />
+    <el-table-column label="操作" width="200">
+      <template #default="scope">
+        <el-button @click="onEditClick(scope.row)">编辑</el-button>
+        <el-button type="danger" @click="onDeleteClick(scope.row)">删除</el-button>
+      </template>
+    </el-table-column>
   </el-table>
 
   <el-dialog title="增加记录" v-model="dialog.visible">
@@ -49,19 +55,22 @@ import dayjs from 'dayjs'
 
 const businessEnums = {
   in: '充值',
-  out: '提现'
+  out: '提现',
+  consume: '消费'
 }
 const businesses = [
   { label: businessEnums.in, value: 'in' },
-  { label: businessEnums.out, value: 'out' }
+  { label: businessEnums.out, value: 'out' },
+  { label: businessEnums.consume, value: 'consume' }
 ]
 const rules = {
   title: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   type: [{ required: true, message: '该项不能为空', trigger: 'blur' }],
   amount: [{ required: true, message: '该项不能为空', trigger: 'blur' }]
 }
-import { getBusinesApi, addBusinessApi, getBusinessExportListApi } from '@/api/business'
+import { getBusinesApi, addBusinessApi, getBusinessExportListApi, delBusinnessApi, updateBusinnessApi } from '@/api/business'
 import { reactive, onBeforeMount, ref, unref } from 'vue'
+import { ElMessageBox } from 'element-plus'
 export default {
   name: 'Index',
   props: {
@@ -142,8 +151,10 @@ export default {
         }
         const params = JSON.parse(JSON.stringify(dialog.form))
         params.deal_time = dayjs().unix()
-        console.log(params)
-        addBusinessApi(params).then(() => init()).catch((err) => {
+        const promise = params.id ? updateBusinnessApi(params) : addBusinessApi(params)
+        promise.then(() => init()).then(() => {
+          dialog.visible = false
+        }).catch((err) => {
           console.log(err)
         })
       })
@@ -152,6 +163,25 @@ export default {
     onBeforeMount(() => {
       init()
     })
+
+    function onEditClick(data) {
+      dialog.form = data
+      dialog.visible = true
+    }
+
+    function onDeleteClick(data) {
+      ElMessageBox.confirm(
+        '确定要删除吗?',
+        '温馨提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'danger'
+        }
+      ).then(() => delBusinnessApi(data.id).then(() => init()).catch((e) => {
+        console.log(e)
+      }))
+    }
     return {
       data,
       formatTime, formatType,
@@ -162,7 +192,9 @@ export default {
       form,
       businesses,
       submit,
-      ext
+      ext,
+      onEditClick,
+      onDeleteClick
     }
   }
 }

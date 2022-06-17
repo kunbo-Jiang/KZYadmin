@@ -54,7 +54,6 @@ const rules = {
   img: [{ required: true, message: '图片不能为空', trigger: 'blur' }],
   name: [{ required: true, message: '名字不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '状态不能为空', trigger: 'blur' }],
-  url: [{ required: true, message: '跳转链接不能为空', trigger: 'blur' }]
 }
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getBannersApi, putBannersApi, addBannersApi, delBannersApi } from '@/api/banner'
@@ -96,7 +95,7 @@ export default {
     }
     function onDeleteClick(row) {
       ElMessageBox.confirm(
-        '确定要删除这个轮播图吗',
+        '确定要删除吗？',
         '温馨提示',
         {
           confirmButtonText: '确定',
@@ -115,10 +114,6 @@ export default {
           ElMessage.error(res.msg)
         })
         .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Delete canceled'
-          })
         })
     }
     function onDialogShow(_form = { img: '', name: '', status: 1, url: '' }) {

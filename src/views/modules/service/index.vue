@@ -103,10 +103,6 @@ export default {
           ElMessage.error(res.msg)
         })
         .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Delete canceled'
-          })
         })
     }
     function onDialogShow(_form = { img: '', name: '', status: 1, url: '' }) {

@@ -1,12 +1,13 @@
 import service from '@/utils/request'
 
-export function getInterestsApi({ page_size, page_num }) {
+export function getInterestsApi({ page_size, page_num, user_id }) {
   return service({
     url: '/v1/interests',
     method: 'get',
     params: {
       page_size,
-      page_num
+      page_num,
+      user_id
     }
   })
 }
