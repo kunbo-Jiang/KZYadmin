@@ -91,7 +91,7 @@ export default {
       lists: [],
       total: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
     const health_vip_levels = ref([])
     const financial_vip_levels = ref([])
@@ -106,7 +106,7 @@ export default {
     function getViplevelsApi () {
       _getViplevelsApi({
         page_num: 1,
-        page_size: 50
+        page_size: 500
       }).then(res => {
         const { VipLevels = [] } = res.data || {}
         const healths = []
@@ -160,7 +160,8 @@ export default {
           }
           ElMessage.error(res.msg)
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e)
         })
     }
 

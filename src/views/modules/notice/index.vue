@@ -58,7 +58,7 @@ export default {
       lists: [],
       total: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
     const dialog = reactive({
       visible: false,
@@ -100,7 +100,8 @@ export default {
           }
           ElMessage.error(res.msg)
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e)
         })
     }
     function onDialogShow(_form = { text: '', name: '', status: 1 }) {

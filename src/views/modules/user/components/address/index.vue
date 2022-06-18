@@ -28,7 +28,7 @@ export default {
       lists: [],
       total: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
 
     function init() {

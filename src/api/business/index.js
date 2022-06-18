@@ -37,7 +37,7 @@ export function addBusinessApi(params) {
 export function delBusinnessApi(id) {
   return service({
     url: '/v1/business',
-    method: 'post',
+    method: 'delete',
     data: {
       id: id
     }

@@ -1,7 +1,12 @@
 <template>
   <div class="header">
-    <el-button @click="onBusinessClick()">增加记录</el-button>
-    <el-button @click="onBusinessExport()" :loading="ext.loading">导出记录</el-button>
+    <div>
+      <el-button @click="onBusinessClick()">增加记录</el-button>
+      <el-button @click="onBusinessExport()" :loading="ext.loading">导出记录</el-button>
+    </div>
+    <span>
+      总值：{{ data.total_amount }}
+    </span>
   </div>
   <el-table :data="data.lists">
     <el-table-column prop="id" label="id" />
@@ -94,8 +99,9 @@ export default {
     const data = reactive({
       lists: [],
       total: 0,
+      total_amount: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
     const ext = reactive({
       loading: false,
@@ -108,9 +114,10 @@ export default {
         page_size: data.page_size,
         userid: props.userid
       }).then(res => {
-        const { Businesss, total } = res.data || {}
+        const { Businesss, total, total_amount = 0 } = res.data || {}
         data.lists = Businesss
         data.total = total
+        data.total_amount = total_amount
       }).catch(err => {
         console.log(err)
       })
@@ -203,6 +210,8 @@ export default {
 <style scoped>
 .header {
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 </style>

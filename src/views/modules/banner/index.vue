@@ -53,7 +53,7 @@
 const rules = {
   img: [{ required: true, message: '图片不能为空', trigger: 'blur' }],
   name: [{ required: true, message: '名字不能为空', trigger: 'blur' }],
-  status: [{ required: true, message: '状态不能为空', trigger: 'blur' }],
+  status: [{ required: true, message: '状态不能为空', trigger: 'blur' }]
 }
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { getBannersApi, putBannersApi, addBannersApi, delBannersApi } from '@/api/banner'
@@ -70,7 +70,7 @@ export default {
       lists: [],
       total: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
     const dialog = reactive({
       visible: false,
@@ -113,7 +113,8 @@ export default {
           }
           ElMessage.error(res.msg)
         })
-        .catch(() => {
+        .catch((e) => {
+          console.log(e)
         })
     }
     function onDialogShow(_form = { img: '', name: '', status: 1, url: '' }) {

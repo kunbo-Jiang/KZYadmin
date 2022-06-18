@@ -10,8 +10,8 @@
     <el-table-column prop="type" label="类型" :formatter="formatType" />
     <el-table-column prop="begin_date" label="开始日期" :formatter="formatBeginTime" />
     <el-table-column prop="end_date" label="结束日期" :formatter="formatEndTime" />
-    <el-table-column prop="profit" label="收益" />
-    <el-table-column prop="num" label="额度" />
+    <el-table-column prop="profit" label="待换积分" />
+    <el-table-column prop="num" label="本金" />
     <el-table-column prop="status" label="状态" :formatter="formatStatus" />
     <el-table-column prop="exchange_rate" label="兑换率" :formatter="formatRate" />
     <el-table-column label="操作" width="200">
@@ -174,7 +174,7 @@ export default {
       lists: [],
       total: 0,
       page_num: 1,
-      page_size: 50
+      page_size: 500
     })
     const ext = reactive({
       loading: false,
@@ -309,12 +309,12 @@ export default {
           })
       })
     }
-    function onEditClick(data) {
-      dialog.form = data
+    function onEditClick(_data) {
+      dialog.form = _data
       dialog.visible = true
     }
-    function formatRate(data) {
-      return `${ data.exchange_rate }%`
+    function formatRate(_data) {
+      return `${ _data.exchange_rate }%`
     }
     return {
       data,
